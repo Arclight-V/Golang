@@ -5,8 +5,10 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
+	"io"
 	"os"
 	"strconv"
+	"strings"
 )
 
 const (
@@ -55,6 +57,17 @@ func parseArg(arg []string) (metrics []int, err error) {
 	return metrics, errors.New(buf.String())
 }
 
+func calc(metrics []int, input []int) {
+	for _, m := range metrics {
+		switch m {
+		case Mean:
+		case Median:
+		case Mod:
+		case SD:
+		}
+	}
+}
+
 func main() {
 
 	arg := os.Args[1:]
@@ -72,15 +85,32 @@ func main() {
 
 	fmt.Println(calc_metrics)
 
-	reader := bufio.NewReader(os.Stdin)
+	var input_int []int
 
+	reader := bufio.NewReader(os.Stdin)
 	for {
-		text, err := reader.ReadString('\n')
+		line, err := reader.ReadString('\n')
 		if err != nil {
+			if err == io.EOF {
+				break
+			}
 			fmt.Println(err)
 			os.Exit(1)
 		}
 
-		fmt.Println(text)
+		line = strings.TrimSuffix(line, "\n")
+
+		n, e := strconv.Atoi(line)
+		if e != nil {
+			fmt.Println(e)
+			os.Exit(1)
+		}
+		if n < -100000 && n > 100000 {
+			fmt.Println("Error: Integer numbers between -100000 and 100000.")
+			os.Exit(1)
+		}
+
+		input_int = append(input_int, n)
 	}
+	fmt.Print(input_int)
 }
