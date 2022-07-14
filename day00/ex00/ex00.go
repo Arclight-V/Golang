@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -66,6 +67,7 @@ func parseArg(arg []string) (metrics []int, err error) {
 	return m, nil
 }
 
+// TODO: add u-tests
 func calc(metrics []int, input []float64) (out map[string]float64) {
 
 	map_size := len(metrics)
@@ -84,7 +86,32 @@ func calc(metrics []int, input []float64) (out map[string]float64) {
 			}
 			output_metrics["Mean"] = sum / float64(len(input))
 		case Median:
+			sort.SliceStable(input, func(i, j int) bool {
+				return input[i] < input[j]
+			})
+			output_metrics["Median"] = input[(len(input)+1)/2]
 		case Mod:
+			var mod_map = make(map[float64]int64, len(input)/2)
+			for _, i := range input {
+				v, ok := mod_map[i]
+				if ok == false {
+					mod_map[i] = 1
+				} else {
+					mod_map[i] = v + 1
+				}
+			}
+			var currentKey float64 = 100001
+			var currentValue int64 = 0
+
+			for key, value := range mod_map {
+				if value > currentValue && key < currentKey {
+					currentKey = key
+					currentValue = value
+				}
+			}
+
+			output_metrics["Mod"] = currentKey
+
 		case SD:
 		}
 	}
@@ -139,6 +166,7 @@ func main() {
 
 	output_metrics := calc(calc_metrics, input_float)
 
+	// TODO: add output rounding
 	for key, value := range output_metrics {
 		fmt.Printf("%s %c %f\n", key, ':', value)
 	}
