@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"math"
 	"os"
 	"sort"
 	"strconv"
@@ -113,6 +114,23 @@ func calc(metrics []int, input []float64) (out map[string]float64) {
 			output_metrics["Mod"] = currentKey
 
 		case SD:
+			mean, ok := output_metrics["Mean"]
+			if !ok {
+				sum := 0.0
+				for _, m := range input {
+					sum += m
+				}
+				mean = sum / float64(len(input))
+			}
+
+			sum := 0.0
+			for _, m := range input {
+				sum += math.Pow(m-mean, 2)
+			}
+
+			sd := math.Sqrt(sum / float64(len(input)))
+
+			output_metrics["SD"] = sd
 		}
 	}
 
@@ -135,7 +153,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Println("Enter the sequence: \n")
+	fmt.Println("Enter the sequence:")
 	var input_float []float64
 	reader := bufio.NewReader(os.Stdin)
 	// TODO:add end-of-file processing and

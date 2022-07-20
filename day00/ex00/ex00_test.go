@@ -1,6 +1,25 @@
 package main
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
+
+func check(r []int, l []int) bool {
+	if len(r) != len(l) {
+		fmt.Println("false2")
+		return false
+	}
+	for i, _ := range r {
+		if r[i] != l[i] {
+			fmt.Printf("r[%v] = %v, l[%v] = %v\n", i, r[i], i, l[i])
+			return false
+		}
+	}
+	fmt.Println("true")
+	return true
+
+}
 
 func TestParseArg(t *testing.T) {
 
@@ -25,21 +44,8 @@ func TestParseArg(t *testing.T) {
 		t.Errorf("Incorect result. Expected %v, %v", []int{Mean, Median, Mod, SD}, nil)
 	}
 
-	m := []int{Median, SD}
-	check := func() bool {
-		if len(m) != len(metrics2) {
-			return false
-		}
-		for i, _ := range m {
-			if m[i] != metrics2[i] {
-				return false
-			}
-		}
-		return true
-	}
-
-	if result2 == nil && check() != true {
-		t.Errorf("Incorect result. Expected %v, %s", []int{Mean, Median, Mod, SD}, []string{"test", "test"})
+	if result2 != nil || check(metrics2, []int{Median, SD}) != true {
+		t.Errorf("Incorect result. Expected %v, %s", []int{Median, SD}, []string{"test", "test"})
 	}
 
 }
