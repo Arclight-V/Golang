@@ -1,0 +1,10 @@
+# Goland
+.idea
+
+# VScode
+.vscode
+
+# Executables
+*.exe
+*.out
+*.app
