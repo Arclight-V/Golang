@@ -1,4 +1,4 @@
-package recipes
+package dbreader
 
 type Ingredients struct {
 	name  string
