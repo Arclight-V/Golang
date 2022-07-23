@@ -1,6 +1,9 @@
 package dbreader
 
-import "errors"
+import (
+	"fmt"
+	"os"
+)
 
 type DBreader interface {
 	Read(file string) (*Recipes, error)
@@ -13,9 +16,11 @@ func NewJSONReader() *JSONReader {
 }
 
 func (j *JSONReader) Read(file string) (*Recipes, error) {
-	if len(file) == 0 {
-		return nil, errors.New("Error")
+	f, err := os.ReadFile(file)
+	if err != nil {
+		return nil, err
 	}
+	fmt.Print(f)
 	return &Recipes{}, nil
 }
 
@@ -26,8 +31,10 @@ func NewXMLReader() *XMLReader {
 }
 
 func (x *XMLReader) Read(file string) (*Recipes, error) {
-	if len(file) == 0 {
-		return nil, errors.New("Error")
+	f, err := os.ReadFile(file)
+	if err != nil {
+		return nil, err
 	}
+	fmt.Print(f)
 	return &Recipes{}, nil
 }

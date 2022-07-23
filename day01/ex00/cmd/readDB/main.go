@@ -1,18 +1,24 @@
 package main
 
 import (
+	"ex00/internal/app/parser"
 	"ex00/service/dbreader"
-	"flag"
 )
 
-func main() {
-
-	// TODO: move to parseArgv
-	path := flag.String("f", "", "the path to the file to read")
-	if len(*path) == 0 {
+func check(e error) {
+	if e != nil {
+		panic(e)
 	}
+}
+
+func main() {
+	path, err := parser.ParseArgv()
+	check(err)
 
 	jsonreader := dbreader.NewJSONReader()
 	xmlreader := dbreader.NewXMLReader()
+
+	jsonreader.Read(path)
+	xmlreader.Read(path)
 
 }
