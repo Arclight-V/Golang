@@ -6,12 +6,12 @@ type Ingredients struct {
 	unit  string
 }
 
-type Food struct {
+type Cake struct {
 	name        string
 	time        string
 	ingredients []Ingredients
 }
 
 type Recipes struct {
-	foods []Food
+	foods []Cake
 }

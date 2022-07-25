@@ -1,6 +1,7 @@
 package dbreader
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 )
@@ -15,13 +16,14 @@ func NewJSONReader() *JSONReader {
 	return &JSONReader{}
 }
 
+// TODO: does not work
 func (j *JSONReader) Read(file string) (*Recipes, error) {
 	f, err := os.ReadFile(file)
 	if err != nil {
 		return nil, err
 	}
-	fmt.Print(f)
-	return &Recipes{}, nil
+	recipes := Recipes{}
+	return &recipes, json.Unmarshal(f, &recipes)
 }
 
 type XMLReader struct{}

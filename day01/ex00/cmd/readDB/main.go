@@ -1,8 +1,9 @@
 package main
 
 import (
+	handler2 "ex00/internal/app/handler"
 	"ex00/internal/app/parser"
-	"ex00/service/dbreader"
+	"fmt"
 )
 
 func check(e error) {
@@ -15,10 +16,9 @@ func main() {
 	path, err := parser.ParseArgv()
 	check(err)
 
-	jsonreader := dbreader.NewJSONReader()
-	xmlreader := dbreader.NewXMLReader()
-
-	jsonreader.Read(path)
-	xmlreader.Read(path)
+	handler := handler2.NewHandler()
+	recipes, e := handler.Handle(path)
+	check(e)
+	fmt.Print(recipes)
 
 }
