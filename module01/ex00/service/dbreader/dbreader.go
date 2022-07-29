@@ -23,7 +23,10 @@ func (j *JSONReader) Read(file string) (*Recipes, error) {
 		return nil, err
 	}
 	recipes := Recipes{}
-	return &recipes, json.Unmarshal(f, &recipes)
+	if e := json.Unmarshal(f, &recipes); e != nil {
+		return nil, e
+	}
+	return &recipes, nil
 }
 
 type XMLReader struct{}

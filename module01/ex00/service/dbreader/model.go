@@ -1,17 +1,17 @@
 package dbreader
 
 type Ingredients struct {
-	name  string
-	count float64
-	unit  string
+	Name  string  `json:"ingredient_name" `
+	Count float64 `json:"ingredient_count,string" `
+	Unit  string  `json:"ingredient_unit,omitempty" `
 }
 
 type Cake struct {
-	name        string
-	time        string
-	ingredients []Ingredients
+	Name        string        `json:"name" `
+	Time        string        `json:"time" `
+	Ingredients []Ingredients `json:"ingredients" `
 }
 
 type Recipes struct {
-	foods []Cake
+	Foods []Cake `json:"cake" `
 }
