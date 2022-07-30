@@ -28,3 +28,12 @@ test    - Runing tests
 clean   - Delete executable file
 
 ```
+
+## module01/ex01
+Comparison of structures. continued ex00
+
+### make rules
+
+```
+
+```
