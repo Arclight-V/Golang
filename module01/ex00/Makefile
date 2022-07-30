@@ -19,7 +19,11 @@ input1: build
 
 .PHONY: input2
 input2: build
-	./ex00 -f inputDB/original_databese.xml
+	./ex00 -f inputDB/original_database.xml
+
+.PHONY: test
+test:
+	cd tests/ && go test
 
 .PHONY: clean
 clean:

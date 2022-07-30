@@ -2,7 +2,7 @@ package dbreader
 
 import (
 	"encoding/json"
-	"fmt"
+	"encoding/xml"
 	"os"
 )
 
@@ -16,7 +16,6 @@ func NewJSONReader() *JSONReader {
 	return &JSONReader{}
 }
 
-// TODO: does not work
 func (j *JSONReader) Read(file string) (*Recipes, error) {
 	f, err := os.ReadFile(file)
 	if err != nil {
@@ -26,6 +25,7 @@ func (j *JSONReader) Read(file string) (*Recipes, error) {
 	if e := json.Unmarshal(f, &recipes); e != nil {
 		return nil, e
 	}
+
 	return &recipes, nil
 }
 
@@ -40,6 +40,9 @@ func (x *XMLReader) Read(file string) (*Recipes, error) {
 	if err != nil {
 		return nil, err
 	}
-	fmt.Print(f)
-	return &Recipes{}, nil
+	recipes := Recipes{}
+	if e := xml.Unmarshal(f, &recipes); e != nil {
+		return nil, e
+	}
+	return &recipes, nil
 }
