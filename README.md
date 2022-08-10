@@ -20,7 +20,7 @@ Implementation of interfaces and unmarshalling .xml, .json files
 ### make rules
 
 ```
-run     - Launch the application. The path to the file is passed via argv
+help    - Оutput a list of all rules
 build   - Build the ex00 application
 input1  - Build the ex00 application and execute with -f inputDB/stolen_database.json
 input2  - Build the ex00 application and execute with -f inputDB/stolen_database.json-f inputDB/original_database.xml
