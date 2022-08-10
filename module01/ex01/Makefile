@@ -1,6 +1,6 @@
 .PHONY: run
 run:
-	go run cmd/compareDB/main.go
+	go run cmd/compareDB/main.go --old inputDB/original_database.xml --new inputDB/stolen_database.json
 
 .PHONY: build
 build:

@@ -1,7 +1,3 @@
-.PHONY: run
-run:
-	go run cmd/readDB/main.go
-
 .PHONY: build
 build:
 	go build -o ex00 cmd/readDB/main.go

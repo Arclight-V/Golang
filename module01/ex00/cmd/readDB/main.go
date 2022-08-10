@@ -1,9 +1,9 @@
 package main
 
 import (
-	handler2 "ex00/internal/app/handler"
 	"ex00/internal/app/parser"
 	"fmt"
+	"handler"
 )
 
 func check(e error) {
@@ -16,7 +16,7 @@ func main() {
 	path, err := parser.ParseArgv()
 	check(err)
 
-	handler := handler2.NewHandler()
+	handler := handler.NewHandler()
 	recipes, e := handler.Handle(path)
 	check(e)
 	fmt.Print(recipes)

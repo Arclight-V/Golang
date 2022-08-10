@@ -1,8 +1,8 @@
 package handler
 
 import (
+	"dbreader"
 	"errors"
-	"ex00/service/dbreader"
 	"strings"
 )
 

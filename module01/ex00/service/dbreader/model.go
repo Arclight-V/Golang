@@ -9,7 +9,7 @@ type Ingredients struct {
 type Cake struct {
 	Name        string        `json:"name" xml:"name"`
 	Time        string        `json:"time" xml:"stovetime"`
-	Ingredients []Ingredients `json:"ingredients" xml:"ingredients"`
+	Ingredients []Ingredients `json:"ingredients" xml:"ingredients>item"`
 }
 
 type Recipes struct {
