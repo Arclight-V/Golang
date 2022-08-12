@@ -17,3 +17,7 @@ build:
 #.PHONY: clean
 #clean:
 #	rm ex00
+
+.PHONY: help
+help:
+	 @grep "PHONY" Makefile | sed 's/.PHONY:/make/g' | sed  '$$ d'
