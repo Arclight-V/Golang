@@ -32,8 +32,12 @@ clean   - Delete executable file
 ## module01/ex01
 Comparison of structures. continued ex00
 
+The application compares with each other .xml or .json files
 ### make rules
 
 ```
-
+help    - Оutput a list of all rules
+run     - Launch the application with --old inputDB/original_database.xml --new inputDB/stolen_database.json 
+build   - Build the ex00 application
+clean   - Delete executable file
 ```
