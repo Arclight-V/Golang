@@ -41,3 +41,17 @@ run     - Launch the application with --old inputDB/original_database.xml --new 
 build   - Build the ex00 application
 clean   - Delete executable file
 ```
+
+## module01/ex02
+Comparison of files. continued ex00
+
+The application compares with each other huger .txt files
+### make rules
+
+```
+help    - Оutput a list of all rules
+run     - Launch the application with --old --old snapshot/snapshot1.txt --new snapshot/snapshot2.txt
+build   - Build the compareFS application
+test    - Runing tests
+clean   - Delete executable file
+```
