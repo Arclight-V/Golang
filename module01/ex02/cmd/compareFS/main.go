@@ -1,9 +1,14 @@
 package main
 
 import (
-	"ex02/internal/app/parser"
+	"checkextension"
 	"fmt"
 	"os"
+	"parser"
+)
+
+const (
+	TXT = ".txt"
 )
 
 func check(e error) {
@@ -17,6 +22,21 @@ func main() {
 
 	path, err := parser.ParseArgv()
 	check(err)
+
+	var ok bool
+	var e string
+	for _, p := range *path {
+		if ok = checkextension.Checkextension(p, TXT); !ok {
+			if len(e) == 0 {
+				e = fmt.Sprintf("Error! Extension \"%s\", expected: %s", p, TXT)
+			} else {
+				e += fmt.Sprintf("\nError! Extension \"%s\", expected: %s", p, TXT)
+			}
+		}
+	}
+	if !ok {
+		check(fmt.Errorf(e))
+	}
 
 	fmt.Printf((*path)[0])
 	fmt.Printf((*path)[1])
