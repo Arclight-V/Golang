@@ -1,6 +1,6 @@
 .PHONY: run
 run:
-	go run cmd/compareFS/main.go --old snapshot/snapshot1.txt --new snapshot/snapshot1.txt
+	go run cmd/compareFS/main.go --old snapshot/snapshot1.txt --new snapshot/snapshot2.txt
 
 .PHONY: build
 build:
