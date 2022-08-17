@@ -2,6 +2,7 @@ package main
 
 import (
 	"checkextension"
+	"comparator"
 	"fmt"
 	"os"
 	"parser"
@@ -38,7 +39,10 @@ func main() {
 		check(fmt.Errorf(e))
 	}
 
-	fmt.Printf((*path)[0])
-	fmt.Printf((*path)[1])
+	str, errcomparator := comparator.ComparatorTwoTXTFiles((*path)[0], (*path)[1])
+	check(errcomparator)
+	if len(str) != 0 {
+		fmt.Print(str)
+	}
 
 }

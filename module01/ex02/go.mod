@@ -8,4 +8,8 @@ require parser v0.0.0
 
 replace parser v0.0.0 => ./internal/app/parser
 
+require comparator v0.0.0
+
+replace comparator v0.0.0 => ./internal/app/comparator
+
 go 1.18
