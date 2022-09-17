@@ -3,13 +3,9 @@ package parser
 import (
 	"errors"
 	"flag"
+	flagsSerach "github.com/Arclight-V/Golang/tree/main/module02/ex00/internal/app/flagsSearch"
 	"os"
 )
-
-type Flags struct {
-	IsSymlinks, IsDirectories, IsFile bool
-	FileExtension, Folder             string
-}
 
 type ErrorsVars struct {
 	folderIsNotSpecified string
@@ -108,7 +104,7 @@ func (e *ErrorsVars) checkIsDirectory(path string) error {
 	return nil
 }
 
-func ParseArgv() (*Flags, error) {
+func ParseArgv() (*flagsSerach.Flags, error) {
 
 	errStruct := NewErrorsVars()
 
@@ -141,7 +137,7 @@ func ParseArgv() (*Flags, error) {
 	if err := errStruct.checkIsDirectory(args[0]); err != nil {
 		return nil, err
 	}
-	allFlag := &Flags{
+	allFlag := &flagsSerach.Flags{
 		IsSymlinks:    *isSymlinks,
 		IsDirectories: *isDirectories,
 		IsFile:        *isFile,
