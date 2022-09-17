@@ -21,6 +21,7 @@ type ErrorsVars struct {
 	unknownFlags         string
 	onlyF                string
 	toManyFolders        string
+	isNotDirectory       string
 }
 
 func NewErrorsVars() *ErrorsVars {
@@ -33,54 +34,78 @@ func NewErrorsVars() *ErrorsVars {
 		unknownFlags:        "error! unknown flags",
 		onlyF:               "works ONLY when -f is specified",
 		toManyFolders:       "error! too many folders for search",
+		isNotDirectory:      "error! is not directory",
 	}
 
 	return nev
 }
 
-// "error! the search folder is not specified"
+// FolderIsNotSpecified "error! the search folder is not specified"
 func (e *ErrorsVars) FolderIsNotSpecified() string {
 	return e.folderIsNotSpecified
 }
 
-// "nothing to look for"
+// NothingToLookFor "nothing to look for"
 func (e *ErrorsVars) NothingToLookFor() string {
 	return e.nothingToLookFor
 }
 
-// "to print the only symlinks"
+// PrintSymLinks "to print the only symlinks"
 func (e *ErrorsVars) PrintSymLinks() string {
 	return e.printSmlinks
 }
 
-// "to print the only directories"
+// PrintDirectories "to print the only directories"
 func (e *ErrorsVars) PrintDirectories() string {
 	return e.printDirectories
 }
 
-// "to print the only files"
+// PrintOnlyFiles "to print the only files"
 func (e *ErrorsVars) PrintOnlyFiles() string {
 	return e.printOnlyFiles
 }
 
-// "which files to search for with the extension"
+// SearchWithExtension "which files to search for with the extension"
 func (e *ErrorsVars) SearchWithExtension() string {
 	return e.searchWithExtension
 }
 
-// "error! unknown flags"
+// UnknownFlags "error! unknown flags"
 func (e *ErrorsVars) UnknownFlags() string {
 	return e.unknownFlags
 }
 
-// "works ONLY when -f is specified"
+// OnlyF "works ONLY when -f is specified"
 func (e *ErrorsVars) OnlyF() string {
 	return e.onlyF
 }
 
-// "error! too many folders for search"
+// ToManyFolders "error! too many folders for search"
 func (e *ErrorsVars) ToManyFolders() string {
 	return e.toManyFolders
+}
+
+func (e *ErrorsVars) IsNotDirectory() string {
+	return e.isNotDirectory
+}
+
+func (e *ErrorsVars) checkIsDirectory(path string) error {
+
+	file, err := os.Open(path)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	fileInfo, errInfo := file.Stat()
+	if errInfo != nil {
+		return errInfo
+	}
+	if !fileInfo.IsDir() {
+		return errors.New(e.isNotDirectory)
+	}
+
+	return nil
 }
 
 func ParseArgv() (*Flags, error) {
@@ -98,7 +123,7 @@ func ParseArgv() (*Flags, error) {
 
 	flag.Parse()
 
-	if !*isSymlinks && !*isDirectories && !*isFile && len(*fileExtension) == 0 {
+	if !*isSymlinks && !*isDirectories && !*isFile && len(*fileExtension) == 0 && len(flag.Args()) > 2 {
 		return nil, errors.New(errStruct.UnknownFlags())
 	}
 
@@ -113,6 +138,9 @@ func ParseArgv() (*Flags, error) {
 		return nil, errors.New(errStruct.FolderIsNotSpecified())
 	}
 
+	if err := errStruct.checkIsDirectory(args[0]); err != nil {
+		return nil, err
+	}
 	allFlag := &Flags{
 		IsSymlinks:    *isSymlinks,
 		IsDirectories: *isDirectories,
