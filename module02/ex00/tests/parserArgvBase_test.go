@@ -54,8 +54,8 @@ func TestParseArgvLotsOfFolders(t *testing.T) {
 
 func TestParseArgvLotsUnknownFlags(t *testing.T) {
 	// Arrange
-	os.Args = []string{"test", "test2"}
-	expectedError := errorVal.UnknownFlags()
+	os.Args = []string{appName, "test", "test2"}
+	expectedError := errorVal.ToManyFolders()
 
 	//Actual
 	actual, err := parser.ParseArgv()
@@ -118,6 +118,42 @@ func TestParseArgvCheckFlagF(t *testing.T) {
 	// Arrange
 	os.Args = []string{appName, flagF}
 	expectedError := errorVal.FolderIsNotSpecified()
+
+	//Actual
+	actual, err := parser.ParseArgv()
+
+	// Assert
+	if err == nil || err.Error() != expectedError || actual != nil {
+		t.Errorf("Incorect result |%s|\tExpected |%s|", err.Error(), expectedError)
+	}
+	clearCommandline()
+}
+
+func TestParseArgvCheckisNoFileAndNoFolder(t *testing.T) {
+	// Arrange
+	os.Args = []string{appName, "test"}
+	_, expectedError := os.Open("test")
+
+	//Actual
+	actual, err := parser.ParseArgv()
+
+	// Assert
+	if err == nil || err.Error() != expectedError.Error() || actual != nil {
+		t.Errorf("Incorect result |%s|\tExpected |%s|", err.Error(), expectedError)
+	}
+	clearCommandline()
+}
+
+func TestParseArgvCheckisNoFolder(t *testing.T) {
+	// Arrange
+	os.Args = []string{appName, "test"}
+	expectedError := errorVal.IsNotDirectory()
+	f, err := os.Create(os.Args[1])
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
+	defer os.Remove(os.Args[1])
 
 	//Actual
 	actual, err := parser.ParseArgv()
