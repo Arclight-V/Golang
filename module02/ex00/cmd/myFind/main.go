@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
+	myfind "github.com/Arclight-V/Golang/tree/main/module02/ex00/internal/app/myFind"
+	parser "github.com/Arclight-V/Golang/tree/main/module02/ex00/internal/app/parser"
 	"os"
-	"parser"
 )
 
 func main() {
@@ -13,5 +14,7 @@ func main() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	fmt.Println(*flagStrut)
+	mYfind := myfind.NewMyfind(flagStrut)
+	mYfind.Find()
+
 }

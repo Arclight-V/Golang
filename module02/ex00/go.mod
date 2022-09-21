@@ -1,7 +1,4 @@
-module module01/ex00
+module github.com/Arclight-V/Golang/tree/main/module02/ex00
 
-require parser v0.0.0
 
-replace parser v0.0.0 => ./internal/app/parser
-
-go 1.19
+go 1.18
