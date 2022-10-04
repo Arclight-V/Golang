@@ -14,7 +14,7 @@ func (f *Flags) AllFlagFalse() bool {
 
 func (f *Flags) OnlyDir() bool {
 	if !f.IsSymlinks && f.IsDirectories && !f.IsFile {
-		return trues
+		return true
 	}
 	return false
 }
