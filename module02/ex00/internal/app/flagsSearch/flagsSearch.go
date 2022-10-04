@@ -18,3 +18,10 @@ func (f *Flags) OnlyDir() bool {
 	}
 	return false
 }
+
+func (f *Flags) OnlySymLink() bool {
+	if f.IsSymlinks && !f.IsDirectories && !f.IsFile {
+		return true
+	}
+	return false
+}
