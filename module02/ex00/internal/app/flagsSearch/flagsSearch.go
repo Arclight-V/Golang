@@ -27,7 +27,14 @@ func (f *Flags) OnlySymLink() bool {
 }
 
 func (f *Flags) OnlyFiles() bool {
-	if !f.IsSymlinks && !f.IsDirectories && f.IsFile {
+	if !f.IsSymlinks && !f.IsDirectories && f.IsFile && len(f.FileExtension) == 0 {
+		return true
+	}
+	return false
+}
+
+func (f *Flags) OnlyFilesExt() bool {
+	if !f.IsSymlinks && !f.IsDirectories && f.IsFile && len(f.FileExtension) > 0 {
 		return true
 	}
 	return false
