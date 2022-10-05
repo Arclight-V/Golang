@@ -33,5 +33,5 @@ func Parse() (*analisysflags.Flags, error) {
 		}
 	}
 
-	return &analisysflags.Flags{Flag: f, AnalisisFiles: flag.Args()}, nil
+	return analisysflags.NewFlags(f, flag.Args()), nil
 }
