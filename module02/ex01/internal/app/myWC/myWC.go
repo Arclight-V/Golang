@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	analisysflags "github.com/Arclight-V/Golang/tree/38-module02ex01-make-base-app-with-pars-flags-in-37-issue/module02/ex01/internal/app/analisysFlags"
+	analisysflags "github.com/Arclight-V/Golang/tree/main/module02/ex01/internal/app/analisysFlags"
 )
 
 type MyWC struct {
