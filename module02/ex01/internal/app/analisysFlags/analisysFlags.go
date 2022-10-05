@@ -12,21 +12,37 @@ const (
 )
 
 type Flags struct {
-	Flag          FlagMode
-	AnalisisFiles []string
+	flag          FlagMode
+	analisisFiles []string
+}
+
+func NewFlags(f FlagMode, aFiles []string) *Flags {
+	return &Flags{flag: f, analisisFiles: aFiles}
+}
+
+func (f *Flags) Mode() FlagMode {
+	return f.flag
+}
+
+func (f *Flags) Files() []string {
+	return f.analisisFiles
+}
+
+func (f *Flags) LenFiles() int {
+	return len(f.analisisFiles)
 }
 
 func (f *Flags) String() string {
 	var mode rune
 	switch {
-	case f.Flag == L:
+	case f.flag == L:
 		mode = 'L'
-	case f.Flag == M:
+	case f.flag == M:
 		mode = 'M'
-	case f.Flag == W:
+	case f.flag == W:
 		mode = 'W'
 	default:
 		mode = 'N'
 	}
-	return fmt.Sprintf("mode: %c\t files: %v", mode, f.AnalisisFiles)
+	return fmt.Sprintf("mode: %c\t files: %v", mode, f.analisisFiles)
 }
