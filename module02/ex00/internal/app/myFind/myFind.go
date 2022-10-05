@@ -75,6 +75,17 @@ func (m *MyFind) findOnlyFiles(path string, d fs.DirEntry, err error) error {
 	return nil
 }
 
+func (m *MyFind) findOnlyFilesExt(path string, d fs.DirEntry, err error) error {
+	if err != nil {
+		return err
+	}
+
+	if ext := filepath.Ext(path); ext == m.FileExtension {
+		fmt.Println(path)
+	}
+	return nil
+}
+
 func (m *MyFind) Find() {
 	var f func(path string, d fs.DirEntry, err error) error
 
@@ -87,6 +98,8 @@ func (m *MyFind) Find() {
 		f = m.findOnlySymLink
 	case m.OnlyFiles():
 		f = m.findOnlyFiles
+	case m.OnlyFilesExt():
+		f = m.findOnlyFilesExt
 	default:
 		f = nil
 	}
