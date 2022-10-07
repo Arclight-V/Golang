@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 
 	analisysflags "github.com/Arclight-V/Golang/tree/main/module02/ex01/internal/app/analisysFlags"
 )
@@ -56,6 +57,17 @@ func countChar(fileScanner *bufio.Scanner) int {
 	return i
 }
 
+func countWords(fileScanner *bufio.Scanner) int {
+	fileScanner.Split(bufio.ScanLines)
+
+	i := 0
+
+	for fileScanner.Scan() {
+		i += len(strings.Split(fileScanner.Text(), " "))
+	}
+	return i
+}
+
 func (wc *MyWC) readFile(path string, f func(fileScanner *bufio.Scanner) int) (string, error) {
 	readFile, err := os.Open(path)
 	defer readFile.Close()
@@ -67,7 +79,7 @@ func (wc *MyWC) readFile(path string, f func(fileScanner *bufio.Scanner) int) (s
 
 	countLine := f(fileScanner)
 
-	return fmt.Sprintf("     %v %s\n", countLine, path), nil
+	return fmt.Sprintf("%v\t%s\n", countLine, path), nil
 }
 
 func (wc *MyWC) Analisys() {
@@ -79,6 +91,7 @@ func (wc *MyWC) Analisys() {
 	case wc.Mode() == analisysflags.M:
 		fun = countChar
 	case wc.Mode() == analisysflags.W:
+		fun = countWords
 	default:
 	}
 
