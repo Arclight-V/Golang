@@ -33,5 +33,9 @@ func Parse() (*analisysflags.Flags, error) {
 		}
 	}
 
+	if count == 0 {
+		return nil, errors.New("error! no flag for analisys")
+	}
+
 	return analisysflags.NewFlags(f, flag.Args()), nil
 }
