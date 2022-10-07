@@ -12,11 +12,51 @@ type MyWC struct {
 	*analisysflags.Flags
 }
 
+func (wc *MyWC) String() string {
+	var f rune
+
+	switch {
+	case wc.Mode() == analisysflags.L:
+		f = 'l'
+	case wc.Mode() == analisysflags.M:
+		f = 'm'
+	case wc.Mode() == analisysflags.W:
+		f = 'w'
+	default:
+	}
+
+	return fmt.Sprintf("mode: %c,\nfiles: %s", f, wc.Files())
+}
+
 func NewMyWC(f *analisysflags.Flags) *MyWC {
 	return &MyWC{f}
 }
 
-func (wc *MyWC) countLine(path string) (string, error) {
+func countLine(fileScanner *bufio.Scanner) int {
+	fileScanner.Split(bufio.ScanLines)
+
+	i := 0
+
+	for fileScanner.Scan() {
+		fileScanner.Text()
+		i++
+	}
+
+	return i
+}
+
+func countChar(fileScanner *bufio.Scanner) int {
+	fileScanner.Split(bufio.ScanLines)
+
+	i := 0
+
+	for fileScanner.Scan() {
+		i += len(fileScanner.Text())
+	}
+	return i
+}
+
+func (wc *MyWC) readFile(path string, f func(fileScanner *bufio.Scanner) int) (string, error) {
 	readFile, err := os.Open(path)
 	defer readFile.Close()
 
@@ -25,27 +65,21 @@ func (wc *MyWC) countLine(path string) (string, error) {
 	}
 	fileScanner := bufio.NewScanner(readFile)
 
-	fileScanner.Split(bufio.ScanLines)
+	countLine := f(fileScanner)
 
-	i := 0
-	for fileScanner.Scan() {
-		fileScanner.Text()
-		i++
-	}
-
-	return fmt.Sprintf("%v   %s\n", i, path), nil
+	return fmt.Sprintf("     %v %s\n", countLine, path), nil
 }
 
 func (wc *MyWC) Analisys() {
-	var fun func(path string) (string, error)
+	var fun func(fileScanner *bufio.Scanner) int
 
 	switch {
 	case wc.Mode() == analisysflags.L:
-		fun = wc.countLine
+		fun = countLine
 	case wc.Mode() == analisysflags.M:
+		fun = countChar
 	case wc.Mode() == analisysflags.W:
 	default:
-		fmt.Println("test")
 	}
 
 	analisysFiles := wc.Files()
@@ -54,12 +88,12 @@ func (wc *MyWC) Analisys() {
 		err       error
 	}
 	ch := make(chan item, wc.LenFiles())
-	for _, f := range analisysFiles {
-		go func(f string) {
+	for _, path := range analisysFiles {
+		go func(path string) {
 			var it item
-			it.statistic, it.err = fun(f)
+			it.statistic, it.err = wc.readFile(path, fun)
 			ch <- it
-		}(f)
+		}(path)
 	}
 
 	for i := 0; i < wc.LenFiles(); i++ {
