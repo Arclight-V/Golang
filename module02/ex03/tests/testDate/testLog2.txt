@@ -1,0 +1,91 @@
+
+Skip to content
+Pull requests
+Issues
+Marketplace
+Explore
+@Arclight-V
+Arclight-V /
+Golang
+Public
+
+Code
+Issues 6
+Pull requests
+Discussions
+Actions
+Projects
+Wiki
+Security
+Insights
+
+    Settings
+
+module02/ex03. Create parser #54
+Open
+Arclight-V opened this issue 16 minutes ago · 0 comments
+Comments
+@Arclight-V
+Owner
+Arclight-V commented 16 minutes ago
+
+parse flags in argv:
+-a /path/to/archive (string)
+seconds argv are path/to/logs1 ... path/to/logs[k] k > 0
+
+if not flag -a:
+./myRotate /path/to/logs1 .. path/to/logs[k] k > 0
+
+handle errors
+@Arclight-V
+Add heading text
+Add bold text, <Ctrl+b>
+Add italic text, <Ctrl+i>
+Add a quote, <Ctrl+Shift+.>
+Add code, <Ctrl+e>
+Add a link, <Ctrl+k>
+Add a bulleted list, <Ctrl+Shift+8>
+Add a numbered list, <Ctrl+Shift+7>
+Add a task list, <Ctrl+Shift+l>
+Directly mention a user or team
+Reference an issue, pull request, or discussion
+Add saved reply
+Attach files by dragging & dropping, selecting or pasting them.
+Styling with Markdown is supported
+Remember, contributions to this repository should follow our GitHub Community Guidelines.
+Assignees
+No one—
+Labels
+None yet
+Projects
+None yet
+Milestone
+No milestone
+Development
+
+When branches are created from issues, their pull requests are automatically linked.
+54-module02ex03-create-parser
+Arclight-V/Golang
+Notifications
+Customize
+
+You’re receiving notifications because you’re watching this repository.
+1 participant
+@Arclight-V
+Delete issue
+Footer
+© 2022 GitHub, Inc.
+Footer navigation
+
+    Terms
+    Privacy
+    Security
+    Status
+    Docs
+    Contact GitHub
+    Pricing
+    API
+    Training
+    Blog
+    About
+
