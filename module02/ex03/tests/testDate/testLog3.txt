@@ -1,0 +1,823 @@
+
+Stack Overflow
+
+    About
+    Products
+    For Teams
+
+    Home
+        Public
+
+Questions
+Tags
+Users
+Companies
+Collectives
+
+    Explore Collectives
+
+    Teams
+    Stack Overflow for Teams – Start collaborating and sharing organizational knowledge. 
+
+How to install the current version of Go in Ubuntu Precise
+Asked 9 years, 3 months ago
+Modified 9 days ago
+Viewed 175k times
+162
+
+Running sudo apt-get install golang-stable, I get Go version go1.0.3. Is there any way to install go1.1.1?
+
+    ubuntugo
+
+Share
+Improve this question
+Follow
+edited Jun 15, 2015 at 0:43
+xpt's user avatar
+xpt
+17.8k3333 gold badges104104 silver badges191191 bronze badges
+asked Jul 5, 2013 at 1:50
+scc's user avatar
+scc
+9,97299 gold badges5050 silver badges6363 bronze badges
+
+    1
+    In the end I had to install from source. Not all tests passed but it seems to be working ok. – 
+    scc
+    Jul 5, 2013 at 12:50
+    1
+    "Not all tests passed but it seems to be working ok." @sofia what version of Ubuntu are you using? I would not expect test failures unless you were running a very old version of Ubuntu or you accidentally installed "tip" vs. "stable". – 
+    voidlogic
+    Jul 9, 2013 at 2:41
+    I'm using ubuntu precise. But installing the latest version from the repo duh/golang didn't report any problem, so not sure what the problem was. – 
+    scc
+    Jul 10, 2013 at 9:22
+    I am also using precise. Did you run "hg update tip" or "hg update release". If you don't recall look back in your bash history file. Using tip might explain the test failures. – 
+    voidlogic
+    Jul 10, 2013 at 13:49
+    1
+    You can try this blog railskey.wordpress.com/2014/05/31/install-gogolang-on-ubuntu – 
+    Pravin Mishra
+    May 31, 2014 at 5:44
+
+Show 3 more comments
+17 Answers
+Sorted by:
+151
+
+[Updated (previous answer no longer applied)]
+
+For fetching the latest version:
+
+sudo add-apt-repository ppa:longsleep/golang-backports
+sudo apt update
+sudo apt install golang-go
+
+Also see the wiki
+Share
+Improve this answer
+Follow
+edited Dec 16, 2020 at 11:40
+answered Jul 10, 2013 at 9:18
+scc's user avatar
+scc
+9,97299 gold badges5050 silver badges6363 bronze badges
+
+    44
+    So as of 2014 July, this no longer has the latest version of Go. Current version is 1.3. After trying this on Ubuntu 12.04, I ended up with version 1.1.1. – 
+    425nesp
+    Jul 22, 2014 at 23:29
+    4
+    Please update this. As of Sep 2014, I also end up with "go1.1.2" – 
+    Riccardo
+    Oct 1, 2014 at 19:21
+    2
+    As of 2014-10-24, I got 1.2.1 linux/amd64. – 
+    nairware
+    Oct 25, 2014 at 2:25
+    5
+    Checking in on March 29th, 2015. That ppa responds with a 404. – 
+    btleffler
+    Mar 29, 2015 at 13:49
+    8
+    I used ppa:evarlast/golang1.4 – 
+    Natim
+    May 21, 2015 at 15:39
+
+Show 7 more comments
+104
+
+I like to use GVM for managing my Go versions in my Ubuntu box. Pretty simple to use, and if you're familiar with RVM, it's a nobrainer. It allows you to have multiple versions of Go installed in your system and switch between whichever version you want at any point in time.
+
+Install GVM with:
+
+sudo apt-get install bison mercurial
+bash < <(curl -LSs 'https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer')
+. "$HOME/.gvm/scripts/gvm"
+
+and then it's as easy as doing this:
+
+gvm install go1.1.1
+gvm use go1.1.1 --default
+
+The default flag at the end of the second command will set go1.1.1 to be your default Go version whenever you start a new terminal session.
+Share
+Improve this answer
+Follow
+edited Sep 1, 2017 at 20:21
+smac89's user avatar
+smac89
+35.5k1414 gold badges115115 silver badges162162 bronze badges
+answered Jul 5, 2013 at 15:05
+noj's user avatar
+noj
+2,48211 gold badge1414 silver badges99 bronze badges
+
+    1
+    I like RVM and always enjoy a good tool in my kit. Glad to see as I get into Go that there's a tool like GVM :) – 
+    Brenden
+    Oct 12, 2013 at 3:49
+    2
+    gvm is same name as for grails gvm – 
+    jcalloway
+    Sep 23, 2014 at 22:54
+    2
+    I just tried using GVM under the fish shell, and a warning to those who don't use bash: GVM will be a pain to get up and running properly. A lot of its scripts don't have a shebang line for example. – 
+    Dennis
+    Feb 13, 2015 at 1:47
+    the "GVM" web page referenced https://github.com/moovweb/gvmt is 404 not found. And I'm reluctant to install anything that doesn't seem to have its own security update procedure – 
+    nealmcb
+    Nov 10, 2016 at 15:49 
+
+    I do not agree that it's as easy as "gvm install" and "gvm use". – 
+    kemicofa ghost
+    Dec 29, 2016 at 10:01
+
+Add a comment
+39
+
+I used following commands from GoLang official repository, it installed GoLang version 1.6 on my Ubuntu 14.04
+
+sudo add-apt-repository ppa:ubuntu-lxc/lxd-stable
+sudo apt-get update
+sudo apt-get install golang
+
+However, since this answer was created, the instructions have been updated to these, for Ubuntu 18.04, 20.04 or 22.04 (amd64, arm64 or armhf):
+
+sudo add-apt-repository ppa:longsleep/golang-backports
+sudo apt update
+sudo apt install golang-go
+
+Reference official GoLang Repo https://github.com/golang/go/wiki/Ubuntu it seems this ppa will always be updated in future.
+Share
+Improve this answer
+Follow
+edited Oct 10 at 22:36
+Brōtsyorfuzthrāx's user avatar
+Brōtsyorfuzthrāx
+4,05733 gold badges3333 silver badges5353 bronze badges
+answered Mar 23, 2016 at 7:16
+Pankaj Khairnar's user avatar
+Pankaj Khairnar
+2,96033 gold badges2424 silver badges3333 bronze badges
+
+    2
+    The team named '~ubuntu-lxc' has no PPA named 'ubuntu/lxd-stable' – 
+    kenorb
+    Jul 9, 2018 at 15:58
+    1
+    From referenced link: sudo add-apt-repository ppa:longsleep/golang-backports sudo apt-get update sudo apt-get install golang-go – 
+    Lee Richardson
+    Dec 9, 2019 at 23:43 
+
+Add a comment
+27
+
+[October 2015] Answer because the current accepted answersudo apt-get install golang isn't uptodate and if you don't want to install GVM follow these steps.
+Step by step installation:
+
+    Download the latest version here (OS: Linux).
+    Open your terminal and go to your Downloads directory
+    sudo tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz
+    Add go to your path export PATH=$PATH:/usr/local/go/bin
+    go version to check the current version installed
+    Start programming.
+
+Possible errors + fixes: (to be updated)
+
+If you get a go version xgcc (Ubuntu 4.9.1-0ubuntu1) 4.9.1 linux/amd64 then you did something wrong, so check out this post: Go is printing xgcc version but not go installed version
+Share
+Improve this answer
+Follow
+edited May 23, 2017 at 12:02
+Community's user avatar
+CommunityBot
+111 silver badge
+answered Oct 13, 2015 at 22:29
+kemicofa ghost's user avatar
+kemicofa ghost
+15.5k55 gold badges7878 silver badges124124 bronze badges
+
+    this doesnt have armv7 – 
+    Varun
+    Sep 24, 2019 at 7:58
+
+Add a comment
+18
+
+i installed from source. there is a step-by-step tutorial here: http://golang.org/doc/install/source
+Share
+Improve this answer
+Follow
+answered Jul 5, 2013 at 10:15
+mnagel's user avatar
+mnagel
+6,36944 gold badges3030 silver badges6464 bronze badges
+
+    2
+    yes. Installing Go from source is the best way to "Go". It is very easy to update that way as well. – 
+    voidlogic
+    Jul 9, 2013 at 2:34
+    1
+    I followed the instructions from here and it worked for me really nice golang.org/doc/install#tarball – 
+    Bogdan
+    Mar 15, 2014 at 3:43 
+
+    1
+    Thank you so much. Still working on my Ubuntu 14.04 while the PPAs don't. :-) – 
+    Ionică Bizău
+    May 2, 2014 at 15:43
+    1
+    This is annoying now that you have to bootstrap 1.5+ with a 1.4+ build. – 
+    jocull
+    Jan 2, 2016 at 17:17
+
+Add a comment
+9
+
+Here is the most straight forward and simple method I found to install go on Ubuntu 14.04 without any ppa or any other tool.
+
+As of now, The version of GO is 1.7
+
+Get the Go 1.7.tar.gz using wget
+
+wget https://storage.googleapis.com/golang/go1.7.linux-amd64.tar.gz
+
+Extract it and copy it to /usr/local/
+
+sudo tar -C /usr/local -xzvf go1.7.linux-amd64.tar.gz
+
+You have now successfully installed GO. Now You have to set Environment Variables so you can use the go command from anywhere.
+
+To achieve this we need to add a line to .bashrc So,
+
+sudo nano ~/.bashrc
+
+and add the following line to the end of file.
+
+export PATH="/usr/local/go/bin:$PATH"
+
+Now, All the commands in go/bin will work.
+
+Check if the install was successful by doing
+
+go version
+
+For offline Documentation you can do
+
+godoc -http=:6060
+
+Offline documentation will be available at http://localhost:6060
+
+NOTE:
+
+Some people here are suggesting to change the PATH variable.
+
+It is not a good choice.
+
+    Changing that to /usr/local/go/bin is temporary and it'll reset once you close terminal.
+
+    go command will only work in terminal in which you changed the value of PATH.
+
+    You'll not be able to use any other command like ls, nano or just about everything because everything else is in /usr/bin or in other locations. All those things will stop working and it'll start giving you error.
+
+However, this is permanent and does not disturbs anything else.
+Share
+Improve this answer
+Follow
+edited Aug 8, 2019 at 12:37
+answered Aug 20, 2016 at 9:34
+Ishan Jain's user avatar
+Ishan Jain
+62766 silver badges1919 bronze badges
+
+    you need to define env var GOPATH=/some/dir then define PATH=${GOPATH}/bin:${PATH} for your own project code – 
+    Scott Stensland
+    Aug 21, 2016 at 15:22 
+
+Yes, I use VSCode so to add GOPATH I just need to edit gopath in user settings json. Thanks for the input. – 
+Ishan Jain
+Aug 22, 2016 at 19:48
+There's a small typo in the tar command: am64 instead of amd64 – 
+Adrian Lungu
+Sep 15, 2016 at 6:21
+
+    1
+    @AdrianLungu Fixed it. – 
+    Ishan Jain
+    Sep 16, 2016 at 15:16
+    1
+    sudo nano ~./bashrc -> sudo nano ~/.bashrc .. also should be vim :p – 
+    GameKyuubi
+    Nov 6, 2016 at 20:19
+
+Show 3 more comments
+9
+I use this instruction to install the latest version of IMG:
+
+    Remove the existing Go version:
+
+    sudo apt-get purge golang*
+
+    Install the latest version of Go:
+
+    sudo add-apt-repository ppa:longsleep/golang-backports
+    sudo apt-get update
+    sudo apt-get install golang-go
+
+    Create the .profile file in the home path with this content:
+
+    # ~/.profile: executed by the command interpreter for login shells.
+    # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+    # exists.
+    # see /usr/share/doc/bash/examples/startup-files for examples.
+    # the files are located in the bash-doc package.
+
+    # the default umask is set in /etc/profile; for setting the umask
+    # for ssh logins, install and configure the libpam-umask package.
+    #umask 022
+
+    # if running bash
+    if [ -n "$BASH_VERSION" ]; then
+        # include .bashrc if it exists
+        if [ -f "$HOME/.bashrc" ]; then
+            . "$HOME/.bashrc"
+        fi
+    fi
+
+    # set PATH so it includes user's private bin directories
+    PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
+    Set Go workspace to the environment variable:
+
+    GOPATH=~/.go
+
+    Apply the .profile configuration:
+
+    source ~/.profile
+
+Test:
+
+$ go version
+go version go1.11.1 linux/amd64
+
+Ref: Go-GitHub-Installation
+Share
+Improve this answer
+Follow
+edited Sep 11, 2020 at 10:40
+answered Dec 18, 2018 at 9:07
+Benyamin Jafari - aGn's user avatar
+Benyamin Jafari - aGn
+24k2121 gold badges116116 silver badges135135 bronze badges
+Add a comment
+6
+
+If someone is looking for installing Go 1.8 the follow this:
+
+sudo add-apt-repository ppa:longsleep/golang-backports
+sudo apt-get update
+sudo apt-get install golang-go
+
+And then install go
+
+sudo apt-get install golang-1.8-go
+
+Share
+Improve this answer
+Follow
+answered Apr 20, 2017 at 7:03
+rakibtg's user avatar
+rakibtg
+5,0261010 gold badges4747 silver badges6969 bronze badges
+
+    Works flawless for me. Thanks! – 
+    Gwyneth Llewelyn
+    Apr 21, 2017 at 22:45
+    1
+    No need to install golang-1.8-go, it's already installed when installing golang-go. Actually as of end April 2017, go 1.8.1 is installed, the latest version. github.com/golang/go/wiki/Ubuntu – 
+    firepol
+    Apr 26, 2017 at 11:10 
+
+I guess you also need to set up GOROOT, GOPATH – 
+Nam G VU
+Aug 8, 2017 at 3:25
+Reference for GOROOT and GOPATH setting right in other answers 1) stackoverflow.com/a/34384978/248616 2) stackoverflow.com/questions/17480044/… More official reference stackoverflow.com/a/10847122/248616 – 
+Nam G VU
+Aug 8, 2017 at 3:43
+
+    For each of our Go project, set GOPATH=/some/dir, PATH=${GOPATH}/bin:${PATH} – 
+    Nam G VU
+    Aug 8, 2017 at 3:46
+
+Show 1 more comment
+6
+
+For the current release of Go:
+
+    The Go Programming Language
+
+    Getting Started
+
+    Download the Go distribution
+
+    Downloads
+
+    Click the link above to visit the Go project's downloads page and select the binary distribution that matches your operating system and processor architecture.
+
+    Official binary distributions are available for the FreeBSD, Linux, macOS, and Windows operating systems and the 32-bit (386) and 64-bit (amd64) x86 processor architectures.
+
+    If a binary distribution is not available for your combination of operating system and architecture you may want to try installing from source or installing gccgo instead of gc.
+
+    Installing Go from source
+
+Share
+Improve this answer
+Follow
+edited Jun 20, 2020 at 9:12
+Community's user avatar
+CommunityBot
+111 silver badge
+answered Jul 5, 2013 at 1:54
+peterSO's user avatar
+peterSO
+151k3030 gold badges261261 silver badges258258 bronze badges
+
+    Installing from source is actually really fast. It compiles fast and the tests are optional if you choose to skip them. – 
+    Jeremy Wall
+    Jul 5, 2013 at 6:02
+
+Add a comment
+5
+
+        Download say, go1.6beta1.linux-amd64.tar.gz from https://golang.org/dl/ into /tmp
+
+wget https://storage.googleapis.com/golang/go1.6beta1.linux-amd64.tar.gz -o /tmp/go1.6beta1.linux-amd64.tar.gz
+
+        un-tar into /usr/local/bin
+
+sudo tar -zxvf go1.6beta1.linux-amd64.tar.gz -C /usr/local/bin/
+
+        Set GOROOT, GOPATH, [on ubuntu add following to ~/.bashrc]
+
+mkdir ~/go
+export GOPATH=~/go
+export PATH=$PATH:$GOPATH/bin
+export GOROOT=/usr/local/bin/go
+export PATH=$PATH:$GOROOT/bin
+
+        Verify
+
+go version should show be
+
+    go version go1.6beta1 linux/amd64
+
+go env should show be
+
+    GOARCH="amd64"
+      GOBIN=""
+      GOEXE=""
+      GOHOSTARCH="amd64"
+      GOHOSTOS="linux"
+      GOOS="linux"
+      GOPATH="/home/vats/go"
+      GORACE=""
+      GOROOT="/usr/local/bin/go"
+      GOTOOLDIR="/usr/local/bin/go/pkg/tool/linux_amd64"
+      GO15VENDOREXPERIMENT="1"
+      CC="gcc"
+      GOGCCFLAGS="-fPIC -m64 -pthread -fmessage-length=0"
+      CXX="g++"
+      CGO_ENABLED="1"
+
+Share
+Improve this answer
+Follow
+answered Dec 20, 2015 at 19:33
+suryakrupa's user avatar
+suryakrupa
+3,57211 gold badge2222 silver badges3333 bronze badges
+
+    Hi, thank you for answer, I am following all the steps but whenever I call "go version" instead of 1.7 it bring 1.4.2 . Is there any other actions that should be done ? – 
+    Anahit Serobyan
+    Nov 18, 2016 at 7:38
+
+Add a comment
+4
+
+These days according to the golang github with for Ubuntu, it's possible to install the latest version of Go easily via a snap:
+
+    Using snaps also works quite well:
+
+# This will give you the latest version of go
+$ sudo snap install --classic go
+
+Potentially preferable to fussing with outdated and/or 3rd party PPAs
+Share
+Improve this answer
+Follow
+answered Feb 8, 2020 at 19:37
+kjones's user avatar
+kjones
+1,26411 gold badge1212 silver badges2626 bronze badges
+Add a comment
+2
+
+On recent Ubuntu (20.10) sudo apt-get install golang works fine; it will install version 1.14.
+Share
+Improve this answer
+Follow
+answered Jan 28, 2021 at 1:21
+user2023370's user avatar
+user2023370
+10.1k66 gold badges4747 silver badges7878 bronze badges
+Add a comment
+0
+
+You can also use the update-golang script:
+
+update-golang is a script to easily fetch and install new Golang releases with minimum system intrusion
+
+git clone https://github.com/udhos/update-golang
+cd update-golang
+sudo ./update-golang.sh
+
+Share
+Improve this answer
+Follow
+answered Feb 13, 2018 at 14:19
+Everton's user avatar
+Everton
+11.3k99 gold badges4242 silver badges5555 bronze badges
+Add a comment
+0
+
+Or maybe you could use this script to install Go and LiteIDE?
+
+If you are unhappy with the answer provided, please comment instead of blindly down voting. I have used this setup for the last 4 years without any issue.
+Share
+Improve this answer
+Follow
+edited Aug 14, 2019 at 12:49
+answered Apr 13, 2016 at 9:23
+thoroc's user avatar
+thoroc
+3,02722 gold badges2424 silver badges3030 bronze badges
+Add a comment
+-1
+
+    If you have ubuntu-mate, you can install latest go by:
+
+    umake go
+
+    I have a script to download and install the last go from official website
+
+     # Change these varialbe to where ever you feel comfortable
+     DOWNLOAD_DIR=${HOME}/Downloads/GoLang
+     INSTALL_DIR=${HOME}/App
+     function install {
+        mkdir -p ${DOWNLOAD_DIR}
+        cd ${DOWNLOAD_DIR}
+
+        echo "Fetching latest Go version..."
+        typeset VER=`curl -s https://golang.org/dl/ | grep -m 1 -o 'go\([0-9]\)\+\(\.[0-9]\)\+'`
+        if uname -m | grep 64 > /dev/null; then
+            typeset ARCH=amd64
+        else
+            typeset ARCH=386
+        fi
+        typeset FILE=$VER.linux-$ARCH
+
+        if [[ ! -e ${FILE}.tar.gz ]]; then
+             echo "Downloading '$FILE' ..."
+             wget https://storage.googleapis.com/golang/${FILE}.tar.gz
+        fi
+
+        echo "Installing ${FILE} ..."
+        tar zxfC ${FILE}.tar.gz ${INSTALL_DIR}
+        echo "Go is installed"
+    }
+
+    install
+
+Setup your GOROOT, GOPATH and PATH:
+
+export GOROOT=${INSTALL_DIR}/go
+export GOPATH=<your go path>
+export PATH=${PATH}:${GOROOT}/bin:${GOPATH}/bin
+
+Share
+Improve this answer
+Follow
+answered May 3, 2016 at 22:32
+Enze Chi's user avatar
+Enze Chi
+1,7151515 silver badges2626 bronze badges
+Add a comment
+-1
+
+Best way to install Go on Ubuntu is to download required version from here. Here you could have all stable and releases, along with archived versions.
+
+after downloading you selected version you can follow further steps, i will suggest you to download tar.gz format for ubuntu machine:
+
+    first of all fully remove the older version from your local by doing this
+
+sudo rm -rf /usr/local/go /usr/local/gocache
+
+this will remove all the local go code base but wait something more we have to do to remove fully from local, i was missing this step and it took so much time until I understood what i am missing so here is the purge stuff to remove from list
+
+    sudo apt-get purge golang
+
+or
+
+    sudo apt remove golang-go
+
+    Now install / extract your downloaded version of go inside /usr/local/go, by hitting terminal with this
+
+    tar -C /usr/local -xzf go1.10.8.linux-amd64.tar.gz
+
+    after doing all above stuff , don't forget or check to GOROOT variable value you can check the value by go env if not set then export PATH=$PATH:/usr/local/go
+    Better to test a small go program to make sure. write this inside /home/yourusername/go/test.php if you haven't changed set GOPATH value:
+
+    package main
+
+    import "fmt"
+
+    func main() {
+        fmt.Println("hello world")
+    }
+
+    run this by go run test.go
+
+i hope it works for you!!
+Share
+Improve this answer
+Follow
+answered Feb 21, 2019 at 15:24
+Ashutosh Rai's user avatar
+Ashutosh Rai
+44811 gold badge77 silver badges1313 bronze badges
+Add a comment
+-1
+
+You can use a script from udhos/update-golang.
+
+Here is a two-liner as example (run as root):
+
+bash <(curl -s https://raw.githubusercontent.com/udhos/update-golang/master/update-golang.sh)
+ln -vs /usr/local/go/bin/go* /usr/local/bin/
+
+Share
+Improve this answer
+Follow
+edited Aug 9, 2019 at 12:14
+answered Jul 9, 2018 at 16:07
+kenorb's user avatar
+kenorb
+145k7676 gold badges655655 silver badges712712 bronze badges
+Add a comment
+Your Answer
+
+Sign up or log in
+Post as a guest
+Name
+Email
+
+Required, but never shown
+
+By clicking “Post Your Answer”, you agree to our terms of service, privacy policy and cookie policy
+Not the answer you're looking for? Browse other questions tagged
+
+    ubuntugo
+
+or ask your own question.
+
+    The Overflow Blog
+
+Faster feedback loops make for faster developer velocity (Ep. 498)
+
+    Introducing the Overflow Offline project
+    Featured on Meta
+    The 2022 Community-a-thon has begun!
+    Mobile app infrastructure being decommissioned
+    Collectives Update: Recognized Members, Articles, and GitLab
+    The [script] tag is being burninated
+    Staging Ground Workflow: Canned Comments
+
+Linked
+420
+What should be the values of GOPATH and GOROOT?
+4
+Go is printing xgcc version but not go installed version
+0
+Unable to change GO version in PhotonOS
+Related
+450
+How to install lxml on Ubuntu
+795
+How to kill a process on a port on ubuntu
+438
+How to install python3 version of package via pip on Ubuntu?
+623
+How to install Boost on Ubuntu
+584
+How to install the JDK on Ubuntu Linux
+327
+How to get the directory of the currently running file?
+525
+How to find the type of an object in Go?
+522
+Cannot install packages using node package manager in Ubuntu
+44
+How to reinstall the latest cmake version?
+Hot Network Questions
+
+    Which gnome is the tallest?
+    Why did they stop adding physical "write protect" mechanism?
+    Use of "die ihr"
+    Do true dragons use echolocation?
+    Which preposition should be used in this translation? "Analysis… through/with/by neural networks"
+    Why in companies like Netflix do we ONLY care about the future it was very profitable in the past?
+    Add a counter to track NFTs minted
+    Terminology: is the "normal acceleration" (nz) considered to be 1 G, or 0, when an aircraft is at rest on the ground with fuselage horizontal?
+    Nuclear Piston Engine - Is it possible?
+    Are there more boys born in the US?
+    What can you see or find at a 薬屋、薬局、ドラッグストアー respectively?
+    Does anything prevent a no-confidence vote in the UK Government at this time?
+    He didn’t get married until he was well into his forties. (What's the implication of marriage status?)
+    Fastest way to calculate the median of lists
+    Is it possible for a plane to be fast yet strong enough to be able to pierce a plane in the air?
+    How to make a Makefile executable?
+    Converting to EPSG code gives error
+    Why is Werewolf by Night in black and white?
+    Are human eyes interferometers?
+    When fitting a linear regression model, is it always recommended to plot the residuals?
+    Pru vRvu - is it for all time?
+    Generating gravity
+    How to determine the file system of a given drive letter from Windows 10 NON-ADMIN cmd.exe?
+    What percentage is grey?
+
+Question feed
+
+Stack Overflow
+
+    Questions
+    Help
+
+Products
+
+    Teams
+    Advertising
+    Collectives
+    Talent
+
+Company
+
+    About
+    Press
+    Work Here
+    Legal
+    Privacy Policy
+    Terms of Service
+    Contact Us
+    Cookie Settings
+    Cookie Policy
+
+Stack Exchange Network
+
+    Technology
+    Culture & recreation
+    Life & arts
+    Science
+    Professional
+    Business
+    API
+    Data
+
+    Blog
+    Facebook
+    Twitter
+    LinkedIn
+    Instagram
+
+Site design / logo © 2022 Stack Exchange Inc; user contributions licensed under CC BY-SA. rev 2022.10.19.34775

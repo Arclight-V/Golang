@@ -1,9 +1,21 @@
 package parser
 
-import dirStruct "github.com/Arclight-V/Golang/tree/main/module02/ex03/internal/dirStruct"
+import (
+	"errors"
+	"flag"
+	"os"
+
+	dirStruct "github.com/Arclight-V/Golang/tree/main/module02/ex03/internal/dirStruct"
+)
 
 func Parse() (*dirStruct.DirStruct, error) {
-	toArchive := "toArchive"
-	toLogs := []string{"logs1", "logs2"}
-	return dirStruct.NewDirStruct(toArchive, toLogs), nil
+	if len(os.Args) < 2 {
+		return nil, errors.New("Nothing to archive")
+	}
+
+	aFlag := flag.String("a", "", "path to archive")
+	flag.Parse()
+	logs := flag.Args()
+
+	return dirStruct.NewDirStruct(*aFlag, logs), nil
 }
