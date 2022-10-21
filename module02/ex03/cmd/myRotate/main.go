@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	myRotate "github.com/Arclight-V/Golang/tree/main/module02/ex03/internal/myRotate"
 	parser "github.com/Arclight-V/Golang/tree/main/module02/ex03/internal/parser"
 )
 
@@ -17,5 +18,6 @@ func check(e error) {
 func main() {
 	ds, err := parser.Parse()
 	check(err)
-	fmt.Println(ds)
+	mr := myRotate.NewMyRotate(ds)
+	mr.Rotate()
 }

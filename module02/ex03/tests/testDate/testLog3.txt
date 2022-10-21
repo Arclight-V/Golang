@@ -17,7 +17,7 @@ Collectives
     Explore Collectives
 
     Teams
-    Stack Overflow for Teams – Start collaborating and sharing organizational knowledge. 
+    Stack Overflow for Teams – Start collaborating and sharing organizational knowledge.
 
 How to install the current version of Go in Ubuntu Precise
 Asked 9 years, 3 months ago
@@ -42,21 +42,21 @@ scc
 9,97299 gold badges5050 silver badges6363 bronze badges
 
     1
-    In the end I had to install from source. Not all tests passed but it seems to be working ok. – 
+    In the end I had to install from source. Not all tests passed but it seems to be working ok. –
     scc
     Jul 5, 2013 at 12:50
     1
-    "Not all tests passed but it seems to be working ok." @sofia what version of Ubuntu are you using? I would not expect test failures unless you were running a very old version of Ubuntu or you accidentally installed "tip" vs. "stable". – 
+    "Not all tests passed but it seems to be working ok." @sofia what version of Ubuntu are you using? I would not expect test failures unless you were running a very old version of Ubuntu or you accidentally installed "tip" vs. "stable". –
     voidlogic
     Jul 9, 2013 at 2:41
-    I'm using ubuntu precise. But installing the latest version from the repo duh/golang didn't report any problem, so not sure what the problem was. – 
+    I'm using ubuntu precise. But installing the latest version from the repo duh/golang didn't report any problem, so not sure what the problem was. –
     scc
     Jul 10, 2013 at 9:22
-    I am also using precise. Did you run "hg update tip" or "hg update release". If you don't recall look back in your bash history file. Using tip might explain the test failures. – 
+    I am also using precise. Did you run "hg update tip" or "hg update release". If you don't recall look back in your bash history file. Using tip might explain the test failures. –
     voidlogic
     Jul 10, 2013 at 13:49
     1
-    You can try this blog railskey.wordpress.com/2014/05/31/install-gogolang-on-ubuntu – 
+    You can try this blog railskey.wordpress.com/2014/05/31/install-gogolang-on-ubuntu –
     Pravin Mishra
     May 31, 2014 at 5:44
 
@@ -84,23 +84,23 @@ scc
 9,97299 gold badges5050 silver badges6363 bronze badges
 
     44
-    So as of 2014 July, this no longer has the latest version of Go. Current version is 1.3. After trying this on Ubuntu 12.04, I ended up with version 1.1.1. – 
+    So as of 2014 July, this no longer has the latest version of Go. Current version is 1.3. After trying this on Ubuntu 12.04, I ended up with version 1.1.1. –
     425nesp
     Jul 22, 2014 at 23:29
     4
-    Please update this. As of Sep 2014, I also end up with "go1.1.2" – 
+    Please update this. As of Sep 2014, I also end up with "go1.1.2" –
     Riccardo
     Oct 1, 2014 at 19:21
     2
-    As of 2014-10-24, I got 1.2.1 linux/amd64. – 
+    As of 2014-10-24, I got 1.2.1 linux/amd64. –
     nairware
     Oct 25, 2014 at 2:25
     5
-    Checking in on March 29th, 2015. That ppa responds with a 404. – 
+    Checking in on March 29th, 2015. That ppa responds with a 404. –
     btleffler
     Mar 29, 2015 at 13:49
     8
-    I used ppa:evarlast/golang1.4 – 
+    I used ppa:evarlast/golang1.4 –
     Natim
     May 21, 2015 at 15:39
 
@@ -134,22 +134,22 @@ noj
 2,48211 gold badge1414 silver badges99 bronze badges
 
     1
-    I like RVM and always enjoy a good tool in my kit. Glad to see as I get into Go that there's a tool like GVM :) – 
+    I like RVM and always enjoy a good tool in my kit. Glad to see as I get into Go that there's a tool like GVM :) –
     Brenden
     Oct 12, 2013 at 3:49
     2
-    gvm is same name as for grails gvm – 
+    gvm is same name as for grails gvm –
     jcalloway
     Sep 23, 2014 at 22:54
     2
-    I just tried using GVM under the fish shell, and a warning to those who don't use bash: GVM will be a pain to get up and running properly. A lot of its scripts don't have a shebang line for example. – 
+    I just tried using GVM under the fish shell, and a warning to those who don't use bash: GVM will be a pain to get up and running properly. A lot of its scripts don't have a shebang line for example. –
     Dennis
     Feb 13, 2015 at 1:47
-    the "GVM" web page referenced https://github.com/moovweb/gvmt is 404 not found. And I'm reluctant to install anything that doesn't seem to have its own security update procedure – 
+    the "GVM" web page referenced https://github.com/moovweb/gvmt is 404 not found. And I'm reluctant to install anything that doesn't seem to have its own security update procedure –
     nealmcb
-    Nov 10, 2016 at 15:49 
+    Nov 10, 2016 at 15:49
 
-    I do not agree that it's as easy as "gvm install" and "gvm use". – 
+    I do not agree that it's as easy as "gvm install" and "gvm use". –
     kemicofa ghost
     Dec 29, 2016 at 10:01
 
@@ -182,13 +182,13 @@ Pankaj Khairnar
 2,96033 gold badges2424 silver badges3333 bronze badges
 
     2
-    The team named '~ubuntu-lxc' has no PPA named 'ubuntu/lxd-stable' – 
+    The team named '~ubuntu-lxc' has no PPA named 'ubuntu/lxd-stable' –
     kenorb
     Jul 9, 2018 at 15:58
     1
-    From referenced link: sudo add-apt-repository ppa:longsleep/golang-backports sudo apt-get update sudo apt-get install golang-go – 
+    From referenced link: sudo add-apt-repository ppa:longsleep/golang-backports sudo apt-get update sudo apt-get install golang-go –
     Lee Richardson
-    Dec 9, 2019 at 23:43 
+    Dec 9, 2019 at 23:43
 
 Add a comment
 27
@@ -218,7 +218,7 @@ kemicofa ghost's user avatar
 kemicofa ghost
 15.5k55 gold badges7878 silver badges124124 bronze badges
 
-    this doesnt have armv7 – 
+    this doesnt have armv7 –
     Varun
     Sep 24, 2019 at 7:58
 
@@ -235,20 +235,20 @@ mnagel
 6,36944 gold badges3030 silver badges6464 bronze badges
 
     2
-    yes. Installing Go from source is the best way to "Go". It is very easy to update that way as well. – 
+    yes. Installing Go from source is the best way to "Go". It is very easy to update that way as well. –
     voidlogic
     Jul 9, 2013 at 2:34
     1
-    I followed the instructions from here and it worked for me really nice golang.org/doc/install#tarball – 
+    I followed the instructions from here and it worked for me really nice golang.org/doc/install#tarball –
     Bogdan
-    Mar 15, 2014 at 3:43 
+    Mar 15, 2014 at 3:43
 
     1
-    Thank you so much. Still working on my Ubuntu 14.04 while the PPAs don't. :-) – 
+    Thank you so much. Still working on my Ubuntu 14.04 while the PPAs don't. :-) –
     Ionică Bizău
     May 2, 2014 at 15:43
     1
-    This is annoying now that you have to bootstrap 1.5+ with a 1.4+ build. – 
+    This is annoying now that you have to bootstrap 1.5+ with a 1.4+ build. –
     jocull
     Jan 2, 2016 at 17:17
 
@@ -311,23 +311,23 @@ Ishan Jain's user avatar
 Ishan Jain
 62766 silver badges1919 bronze badges
 
-    you need to define env var GOPATH=/some/dir then define PATH=${GOPATH}/bin:${PATH} for your own project code – 
+    you need to define env var GOPATH=/some/dir then define PATH=${GOPATH}/bin:${PATH} for your own project code –
     Scott Stensland
-    Aug 21, 2016 at 15:22 
+    Aug 21, 2016 at 15:22
 
-Yes, I use VSCode so to add GOPATH I just need to edit gopath in user settings json. Thanks for the input. – 
+Yes, I use VSCode so to add GOPATH I just need to edit gopath in user settings json. Thanks for the input. –
 Ishan Jain
 Aug 22, 2016 at 19:48
-There's a small typo in the tar command: am64 instead of amd64 – 
+There's a small typo in the tar command: am64 instead of amd64 –
 Adrian Lungu
 Sep 15, 2016 at 6:21
 
     1
-    @AdrianLungu Fixed it. – 
+    @AdrianLungu Fixed it. –
     Ishan Jain
     Sep 16, 2016 at 15:16
     1
-    sudo nano ~./bashrc -> sudo nano ~/.bashrc .. also should be vim :p – 
+    sudo nano ~./bashrc -> sudo nano ~/.bashrc .. also should be vim :p –
     GameKyuubi
     Nov 6, 2016 at 20:19
 
@@ -411,22 +411,22 @@ rakibtg's user avatar
 rakibtg
 5,0261010 gold badges4747 silver badges6969 bronze badges
 
-    Works flawless for me. Thanks! – 
+    Works flawless for me. Thanks! –
     Gwyneth Llewelyn
     Apr 21, 2017 at 22:45
     1
-    No need to install golang-1.8-go, it's already installed when installing golang-go. Actually as of end April 2017, go 1.8.1 is installed, the latest version. github.com/golang/go/wiki/Ubuntu – 
+    No need to install golang-1.8-go, it's already installed when installing golang-go. Actually as of end April 2017, go 1.8.1 is installed, the latest version. github.com/golang/go/wiki/Ubuntu –
     firepol
-    Apr 26, 2017 at 11:10 
+    Apr 26, 2017 at 11:10
 
-I guess you also need to set up GOROOT, GOPATH – 
+I guess you also need to set up GOROOT, GOPATH –
 Nam G VU
 Aug 8, 2017 at 3:25
-Reference for GOROOT and GOPATH setting right in other answers 1) stackoverflow.com/a/34384978/248616 2) stackoverflow.com/questions/17480044/… More official reference stackoverflow.com/a/10847122/248616 – 
+Reference for GOROOT and GOPATH setting right in other answers 1) stackoverflow.com/a/34384978/248616 2) stackoverflow.com/questions/17480044/… More official reference stackoverflow.com/a/10847122/248616 –
 Nam G VU
 Aug 8, 2017 at 3:43
 
-    For each of our Go project, set GOPATH=/some/dir, PATH=${GOPATH}/bin:${PATH} – 
+    For each of our Go project, set GOPATH=/some/dir, PATH=${GOPATH}/bin:${PATH} –
     Nam G VU
     Aug 8, 2017 at 3:46
 
@@ -463,7 +463,7 @@ peterSO's user avatar
 peterSO
 151k3030 gold badges261261 silver badges258258 bronze badges
 
-    Installing from source is actually really fast. It compiles fast and the tests are optional if you choose to skip them. – 
+    Installing from source is actually really fast. It compiles fast and the tests are optional if you choose to skip them. –
     Jeremy Wall
     Jul 5, 2013 at 6:02
 
@@ -518,7 +518,7 @@ suryakrupa's user avatar
 suryakrupa
 3,57211 gold badge2222 silver badges3333 bronze badges
 
-    Hi, thank you for answer, I am following all the steps but whenever I call "go version" instead of 1.7 it bring 1.4.2 . Is there any other actions that should be done ? – 
+    Hi, thank you for answer, I am following all the steps but whenever I call "go version" instead of 1.7 it bring 1.4.2 . Is there any other actions that should be done ? –
     Anahit Serobyan
     Nov 18, 2016 at 7:38
 
