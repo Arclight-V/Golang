@@ -616,7 +616,7 @@ Example ¶
 Source Files ¶
 View all
 
-    flag.go 
+    flag.go
 
 Why Go
 Use Cases
