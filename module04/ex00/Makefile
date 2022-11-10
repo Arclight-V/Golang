@@ -1,4 +1,4 @@
-APP = myServer
+APP = vendingServer
 
 .PHONY: build
 build:
